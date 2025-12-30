@@ -13,38 +13,46 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out the repository code
-      - name: Checkout code
+      # Step 1: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Step 2: Set up JDK for Java 21
-      - name: Set up JDK
+      # Step 2: Set up Java
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          java-version: 21  # Java 21 is specified in your Maven project
+          java-version: 21
           distribution: 'temurin'
 
-      # Step 3: Cache Maven dependencies for faster builds
+      # Step 3: Cache Maven dependencies
       - name: Cache Maven dependencies
         uses: actions/cache@v3
         with:
           path: ~/.m2
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
-            ${{ runner.os }}-maven-
+            ${{ runner.os }}-maven
 
-      # Step 4: Set up Maven
-      - name: Install Maven dependencies
+      # Step 4: Install dependencies and build
+      - name: Install Maven Dependencies
         run: mvn clean install --batch-mode
 
-      # Step 5: Run Tests with Maven
+      # Step 5: Run Tests
       - name: Run Tests
         run: mvn test
 
-      # Step 6: Upload Test Artifacts
+      # Step 6: Archive Test Reports (Surefire or Allure Results)
       - name: Archive Test Reports
         if: always()
         uses: actions/upload-artifact@v3
         with:
           name: surefire-reports
-          path: target/surefire-reports
+          path: target/surefire-reports/
+
+      # Step 7: Archive Allure Report Results (Optional)
+      - name: Archive Allure Results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-results
+          path: allure-results/

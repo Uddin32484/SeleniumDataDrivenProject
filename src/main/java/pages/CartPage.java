@@ -15,8 +15,8 @@ public class CartPage extends BasePage {
 
 
 
-    public boolean isCartVisible() {
-       return wait.until((ExpectedConditions.visibilityOf(cart))).isDisplayed();
+    public void isCartVisible() {
+        wait.until((ExpectedConditions.visibilityOf(cart)));
 
     }
 }

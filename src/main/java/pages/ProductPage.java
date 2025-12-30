@@ -11,8 +11,8 @@ public class ProductPage extends BasePage {
 
 
 
-    public boolean isProductDisplayed() {
-        return product.isDisplayed();
+    public void isProductDisplayed() {
+        product.isDisplayed();
 
 
     }

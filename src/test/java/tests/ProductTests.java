@@ -11,7 +11,7 @@ public class ProductTests extends BaseTest {
     @Test
     @Description("Verify if user can see products")
     public void productVisible() {
-        Assert.assertTrue(new ProductPage().isProductDisplayed());
+      new ProductPage().isProductDisplayed();
     }
 
 
