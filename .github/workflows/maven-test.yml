@@ -1,0 +1,50 @@
+name: Maven Test Automation Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up JDK for Java 21
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: 21  # Java 21 is specified in your Maven project
+          distribution: 'temurin'
+
+      # Step 3: Cache Maven dependencies for faster builds
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      # Step 4: Set up Maven
+      - name: Install Maven dependencies
+        run: mvn clean install --batch-mode
+
+      # Step 5: Run Tests with Maven
+      - name: Run Tests
+        run: mvn test
+
+      # Step 6: Upload Test Artifacts
+      - name: Archive Test Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: surefire-reports
+          path: target/surefire-reports
