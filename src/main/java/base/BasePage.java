@@ -13,7 +13,7 @@ import java.time.Duration;
 public abstract class BasePage {
 
     protected WebDriver driver;
-    WebDriverWait wait;
+     public  WebDriverWait wait;
     protected BasePage() {
 // Fetch the driver from your Factory
         this.driver = DriverFactory.getDriver();

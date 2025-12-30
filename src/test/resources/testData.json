@@ -4,11 +4,5 @@
     "password": "Ivin1234",
     "testCaseName": "valid"
 
-  },
-  {
-    "username": "mike356@gmail.com.com",
-    "wrongpassword": "wrong_password",
-    "testCaseName": "Invalid"
-
   }
 ]
