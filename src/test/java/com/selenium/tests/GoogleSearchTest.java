@@ -2,9 +2,13 @@ package com.selenium.tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 /**
  * Sample data-driven test demonstrating Google search
@@ -16,27 +20,25 @@ public class GoogleSearchTest extends BaseTest {
         // Navigate to Google
         driver.get("https://www.google.com");
         
+        // Handle cookie consent if present
         try {
-            // Accept cookies if present
-            WebElement acceptButton = driver.findElement(By.xpath("//button[contains(., 'Accept') or contains(., 'Agree')]"));
-            if (acceptButton.isDisplayed()) {
-                acceptButton.click();
-            }
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+            WebElement acceptButton = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'accept') or contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'agree')]")
+            ));
+            acceptButton.click();
         } catch (Exception e) {
-            // Cookie dialog not found, continue
+            // Cookie dialog not found or already accepted, continue
         }
         
         // Find search box and enter search term
-        WebElement searchBox = driver.findElement(By.name("q"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement searchBox = wait.until(ExpectedConditions.presenceOfElementLocated(By.name("q")));
         searchBox.sendKeys(searchTerm);
         searchBox.submit();
         
-        // Wait for results
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        // Wait for page title to update
+        wait.until(ExpectedConditions.not(ExpectedConditions.titleIs("Google")));
         
         // Verify page title contains search term
         String pageTitle = driver.getTitle();
