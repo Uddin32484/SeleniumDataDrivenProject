@@ -48,9 +48,9 @@ jobs:
         run: ls -la allure-results
 
       # Step 7: Upload Allure Results
-      - name: Archive Allure Results
-        if: always()
+      - name: Upload Allure Results
         uses: actions/upload-artifact@v4
+        if: always()  # Crucial: This ensures it runs even if tests fail
         with:
           name: allure-results
-          path: allure-results/
+          path: target/allure-results  # <--- Update this path
