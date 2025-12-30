@@ -5,6 +5,8 @@ import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import pages.CartPage;
 import pages.HomePage;
+import io.qameta.allure.Step;
+import org.testng.annotations.Test;
 
 
 public class CartTests extends BaseTest {

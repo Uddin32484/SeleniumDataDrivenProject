@@ -83,10 +83,13 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.2</version>
                 <configuration>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
-                    </suiteXmlFiles>
-                </configuration>
+                <suiteXmlFiles>
+                    <suiteXmlFile>testng.xml</suiteXmlFile>
+                </suiteXmlFiles>
+                <systemPropertyVariables>
+                    <allure.results.directory>${project.basedir}/allure-results</allure.results.directory>
+                </systemPropertyVariables>
+            </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
