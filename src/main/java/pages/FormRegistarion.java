@@ -32,11 +32,11 @@ public class FormRegistarion extends BasePage {
     WebElement lastName;
     @FindBy(id= "passwd")
     WebElement password;
-    @FindBy(id= "days")
+    @FindBy(xpath= "//select[@class='form-control' and @id='days']")
     WebElement days;
-    @FindBy(id= "months")
+    @FindBy(xpath= "//select[@class='form-control' and @id='months']")
     WebElement months;
-    @FindBy(id= "years")
+    @FindBy(xpath= "//select[@class='form-control' and @id='years']")
     WebElement years;
     @FindBy(id = "submitAccount")
     WebElement registrationButton;
