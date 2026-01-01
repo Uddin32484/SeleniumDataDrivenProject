@@ -15,7 +15,7 @@ public class RegistrationTest extends BaseTest {
 
 
     @Test(dataProvider = "excelData", dataProviderClass = ExcelDataStore.class)
-    @Description("Verify if user can  regiter with  valid information")
+    @Description("Verify if user can  register with  valid information")
     public void registrationTest(String firstname, String lastName, String password, String day, String month, String year){
         reg = new FormRegistarion();
         home = new HomePage();
