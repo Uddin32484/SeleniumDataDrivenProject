@@ -1,8 +1,7 @@
 package pages;
 
 import base.BasePage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,7 +15,7 @@ public class FormRegistarion extends BasePage {
 
 
     Random random = new Random();
-    WebDriverWait wait;
+
     @FindBy(xpath = "//h3[contains(text(),'Create an account')]")
     WebElement createAccountText;
     @FindBy(css = "#email_create")
@@ -43,9 +42,7 @@ public class FormRegistarion extends BasePage {
     WebElement registrationButton;
     @FindBy(xpath = "//p[@class=\"alert alert-success\"]")
     WebElement successMessage;
-//    static final By DAY = By.xpath("//select[@class='form-control' and @name='days']");
-//    static final By MONTH = By.xpath("//select[@class='form-control' and @name='months']");
-//    static final By YEAR = By.xpath("//select[@class='form-control' and @name='years']");
+
 
 
 
@@ -60,7 +57,7 @@ public class FormRegistarion extends BasePage {
     }
 
     public boolean validateEmail(String email) {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(7));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
          boolean displayed = isCreateAccountTextDisplayed();
          wait.until(ExpectedConditions.visibilityOf(createAccountEmail)).sendKeys(email);
          clickCreateAccount();

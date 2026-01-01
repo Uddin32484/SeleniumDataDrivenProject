@@ -25,7 +25,7 @@ public abstract class BasePage {
         }
 
         // Now 'driver' is guaranteed to be set, so WebDriverWait won't crash
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(55));
 
         // Initialize PageFactory elements if you are using @FindBy
         PageFactory.initElements(driver, this);
