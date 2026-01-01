@@ -15,13 +15,8 @@
         <allure-testng.version>2.32.0</allure-testng.version>
         <allure.plugin.version>2.13.9</allure.plugin.version>
     </properties>
-    <!-- ✅ Add Allure repository here -->
-    <repositories>
-        <repository>
-            <id>allure-repo</id>
-            <url>https://repo.qameta.io/allure/</url>
-        </repository>
-    </repositories>
+
+
 
     <dependencies>
         <dependency>
@@ -82,16 +77,10 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>2.32.0</version>
+            <version>2.24.0</version>
             <scope>test</scope>
         </dependency>
-        <!-- (Optional but recommended) Allure Selenium -->
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-java-commons</artifactId>
-            <version>2.24.0</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
+
 
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -123,7 +112,7 @@
                 <version>3.2.5</version>
 
                 <configuration>
-                    <testFailureIgnore>true</testFailureIgnore>
+
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
@@ -132,12 +121,7 @@
 
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                     </systemPropertyVariables>
-                    <properties>
-                        <property>
-                            <name>listener</name>
-                            <value>io.qameta.allure.testng.AllureTestNg</value>
-                        </property>
-                    </properties>
+
                 </configuration>
 
             </plugin>
@@ -145,14 +129,14 @@
 
 
         </plugins>
-        <testResources>
-            <testResource>
-                <directory>src/test/resources</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                </includes>
-            </testResource>
-        </testResources>
+<!--        <testResources>-->
+<!--            <testResource>-->
+<!--                <directory>src/test/resources</directory>-->
+<!--                <includes>-->
+<!--                    <include>**/*.properties</include>-->
+<!--                </includes>-->
+<!--            </testResource>-->
+<!--        </testResources>-->
 
     </build>
 </project>

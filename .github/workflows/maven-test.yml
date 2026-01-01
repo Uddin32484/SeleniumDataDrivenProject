@@ -40,15 +40,16 @@ jobs:
           mkdir -p target/allure-report
           allure generate target/allure-results --clean -o target/allure-report
 
-      - name: Upload report artifact
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Allure Report to Pages
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: target/allure-report
 
       - name: Deploy report to GitHub Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: target/allure-report
+        id: deployment
+        uses: actions/deploy-pages@v4
+
