@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import java.time.Duration;
 import java.util.Random;
@@ -34,9 +34,9 @@ public class FormRegistarion extends BasePage {
     WebElement password;
     @FindBy(xpath= "//select[@class='form-control' and @id='days']")
     WebElement days;
-    @FindBy(xpath= "//select[@class='form-control' and @id='months']")
+    @FindBy(xpath= "//div[@class='row']//select[@id='months']")
     WebElement months;
-    @FindBy(xpath= "//select[@class='form-control' and @id='years']")
+    @FindBy(xpath= "//div[@class='row']//select[@id='years']")
     WebElement years;
     @FindBy(id = "submitAccount")
     WebElement registrationButton;
