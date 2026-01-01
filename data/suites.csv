@@ -1,0 +1,7 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Verify if user can  regiter with  valid information","7210","registrationTest","AutomationSuite","Thu Jan 01 16:01:03 UTC 2026","passed","Thu Jan 01 16:01:11 UTC 2026","tests.RegistrationTest","Regression","tests.RegistrationTest","registrationTest"
+"Verify if user can can click on signIn","751","verifySignInLink","AutomationSuite","Thu Jan 01 15:59:36 UTC 2026","passed","Thu Jan 01 15:59:37 UTC 2026","tests.HomeTests","Regression","tests.HomeTests","verifySignInLink"
+"Verify if user can login with valid credentials","1193","validLogin","AutomationSuite","Thu Jan 01 15:59:40 UTC 2026","passed","Thu Jan 01 15:59:41 UTC 2026","tests.LoginTests","Regression","tests.LoginTests","validLogin"
+"Verify if user can  see cart Page","663","cartIconVisible","AutomationSuite","Thu Jan 01 15:59:47 UTC 2026","passed","Thu Jan 01 15:59:48 UTC 2026","tests.CartTests","Regression","tests.CartTests","cartIconVisible"
+"Verify if user can  regiter with  valid information","8219","registrationTest","AutomationSuite","Thu Jan 01 16:00:52 UTC 2026","passed","Thu Jan 01 16:01:01 UTC 2026","tests.RegistrationTest","Regression","tests.RegistrationTest","registrationTest"
+"Verify if user can see products","41","productVisible","AutomationSuite","Thu Jan 01 15:59:44 UTC 2026","passed","Thu Jan 01 15:59:44 UTC 2026","tests.ProductTests","Regression","tests.ProductTests","productVisible"
