@@ -1,9 +1,9 @@
-name: Maven Test Only
+name: Run Tests and Publish Allure Report
 
 on:
-  pull_request:
   push:
     branches: [ "main" ]
+  pull_request:
 
 jobs:
   test:
@@ -29,3 +29,42 @@ jobs:
 
       - name: Run Maven tests
         run: mvn clean test
+
+      - name: Install Allure CLI
+        run: |
+          sudo apt update
+          sudo apt install -y allure
+
+      - name: Generate Allure Report
+        run: |
+          allure generate target/allure-results --clean -o target/allure-report
+          echo "Allure report generated at target/allure-report"
+
+      - name: Upload Allure Report as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: target/allure-report
+
+      - name: Print Report URL
+        run: |
+          echo "========================================"
+          echo " Allure Report will be available at:"
+          echo " https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+          echo "========================================"
+
+      - name: Upload to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: target/allure-report
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
