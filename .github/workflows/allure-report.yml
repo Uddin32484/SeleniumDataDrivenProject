@@ -33,7 +33,11 @@ jobs:
       - name: Install Allure CLI
         run: |
           sudo apt update
-          sudo apt install -y allure
+          sudo apt install -y default-jre unzip wget
+          wget https://github.com/allure-framework/allure2/releases/download/2.36.0/allure-2.36.0.zip
+          unzip allure-2.36.0.zip
+          sudo mv allure-2.36.0 /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/bin/allure
 
       - name: Generate Allure Report
         run: |
