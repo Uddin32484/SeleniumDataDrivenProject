@@ -2,13 +2,13 @@ package tests;
 
 import io.qameta.allure.Description;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.CartPage;
 import pages.HomePage;
-import io.qameta.allure.Step;
-import org.testng.annotations.Test;
 
 
+@Listeners({io.qameta.allure.testng.AllureTestNg.class, listeners.TestExecutionListener.class})
 public class CartTests extends BaseTest {
 
     @Test

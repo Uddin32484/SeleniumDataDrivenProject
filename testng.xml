@@ -3,7 +3,10 @@
     <listeners>
         <listener class-name="io.qameta.allure.testng.AllureTestNg" />
     </listeners>
-    <parameter name="env" value="prod"/>
+    <listeners>
+        <listener class-name="listeners.RetryListener"/>
+    </listeners>
+    <parameter name="env" value="qa"/>
     <test name="Regression">
         <classes>
             <class name="tests.HomeTests"/>
@@ -11,6 +14,8 @@
             <class name="tests.ProductTests"/>
             <class name="tests.CartTests"/>
             <class name="tests.RegistrationTest"/>
+
+
 
 
         </classes>

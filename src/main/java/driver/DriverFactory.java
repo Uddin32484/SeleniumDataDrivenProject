@@ -23,10 +23,19 @@ public class DriverFactory {
 
                 // Check if running on GitHub Actions (CI)
                 if (System.getenv("CI") != null) {
-                    options.addArguments("--headless");
+                    options.addArguments("--headless=new"); // New headless mode
+                    options.addArguments("--disable-gpu");
                     options.addArguments("--no-sandbox");
                     options.addArguments("--disable-dev-shm-usage");
                     options.addArguments("--window-size=1920,1080");
+                    // Hide "Chrome is being controlled by automated test software"
+                    options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+                    // Optional: remove "Chrome is being controlled" infobar
+                    options.setExperimentalOption("useAutomationExtension", false);
+                    // Optional: disable infobars and notifications
+                    options.addArguments("--disable-infobars");
+                    options.addArguments("--disable-notifications");
+                    options.addArguments("--remote-allow-origins=*"); //
                 } // Good practice for headless
 
                 driver.set(new ChromeDriver(options)); // Pass options here

@@ -3,13 +3,12 @@ package tests;
 import config.ExcelDataStore;
 import io.qameta.allure.Description;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.FormRegistarion;
 import pages.HomePage;
-import util.ExcelUtils;
 
-import java.io.IOException;
-
+@Listeners({io.qameta.allure.testng.AllureTestNg.class, listeners.TestExecutionListener.class})
 public class RegistrationTest extends BaseTest {
     HomePage home;
     FormRegistarion reg;
