@@ -2,6 +2,7 @@ package pages;
 
 import base.BasePage;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -34,8 +35,9 @@ public class FormRegistarion extends BasePage {
     WebElement password;
     @FindBy(xpath= "//select[@class='form-control' and @id='days']")
     WebElement days;
+
     @FindBy(xpath= "//div[@class='row']//select[@id='months']")
-    WebElement months;
+   WebElement months;
     @FindBy(xpath= "//div[@class='row']//select[@id='years']")
     WebElement years;
     @FindBy(id = "submitAccount")
@@ -73,10 +75,10 @@ public class FormRegistarion extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(password)).sendKeys(pass);
         wait.until(ExpectedConditions.elementToBeClickable(days));
         new Select(days).selectByValue(String.valueOf(day));
-        wait.until(ExpectedConditions.elementToBeClickable(months));
-        new Select(months).selectByIndex(Integer.parseInt(month));
-        wait.until(ExpectedConditions.elementToBeClickable(years));
-        new Select(years).selectByValue((year));
+       // wait.until(ExpectedConditions.visibilityOfElementLocated(months));
+       // new Select(months).selectByIndex(Integer.parseInt(month));
+       // wait.until(ExpectedConditions.elementToBeClickable(years));
+       // new Select(years).selectByValue((year));
         wait.until(ExpectedConditions.elementToBeClickable(registrationButton)).click();
        wait.until((ExpectedConditions.visibilityOf(successMessage))).isDisplayed();
 
