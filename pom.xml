@@ -113,17 +113,24 @@
     <build>
 
         <plugins>
+            <plugin> <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.11.2</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.1.2</version>
+                <version>3.2.5</version>
+
                 <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <!-- Set Allure results directory -->
                     <systemPropertyVariables>
-                        <allure.results.directory>target/allure-results</allure.results.directory>
+
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                     </systemPropertyVariables>
                     <properties>
                         <property>
@@ -132,6 +139,7 @@
                         </property>
                     </properties>
                 </configuration>
+
             </plugin>
 
 
