@@ -38,13 +38,14 @@ jobs:
         run: mvn clean test
         continue-on-error: true
         # install allure cli
+      - name: Install Node.js and Allure CLI
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
       - name: Install Allure CLI
-        run: |
-              sudo apt-get update
-              sudo apt-get install -y unzip wget
-              wget https://github.com/allure-framework/allure2/releases/download/2.36.0/allure-2.36.0.zip
-              unzip -o allure-2.27.2.zip -d /opt/
-              sudo ln -s /opt/allure-2.27.2/bin/allure /usr/bin/allure
+        run: npm install -g allure-commandline@2.34.1
+
 
 
       # Step 5: Generate Allure Report
