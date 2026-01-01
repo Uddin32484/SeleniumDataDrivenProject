@@ -19,23 +19,28 @@ jobs:
         with:
           java-version: 21
           distribution: temurin
-
-      - name: Install Allure CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y openjdk-8-jre-headless wget unzip
-          wget https://github.com/allure-framework/allure2/releases/download/2.27.0/allure-2.27.0.zip
-          unzip allure-2.27.0.zip -d /opt/allure
-          sudo ln -s /opt/allure/allure-2.27.0/bin/allure /usr/bin/allure
+          cache: maven
 
       - name: Run Selenium Tests
         run: mvn clean test
 
       - name: Generate Allure Report
-        run: allure generate target/allure-results -o target/allure-report --clean
+        uses: allure-framework/allure-report@v0
+        with:
+          results-directory: target/allure-results
+          report-directory: target/allure-report
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          allure-cli-version: 2.30.0
 
       - name: Upload report artifact
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: target/allure-report
+
+      - name: Deploy report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: target/allure-report
