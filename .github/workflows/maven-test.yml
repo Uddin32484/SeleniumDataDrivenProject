@@ -37,6 +37,15 @@ jobs:
       - name: Run Selenium Tests
         run: mvn clean test
         continue-on-error: true
+        # install allure cli
+      - name: Install Allure CLI
+        run: |
+              sudo apt-get update
+              sudo apt-get install -y unzip wget
+              wget https://github.com/allure-framework/allure2/releases/download/2.27.2/allure-2.27.2.zip
+              unzip -o allure-2.27.2.zip -d /opt/
+              sudo ln -s /opt/allure-2.27.2/bin/allure /usr/bin/allure
+
 
       # Step 5: Generate Allure Report
       - name: Generate Allure Report
