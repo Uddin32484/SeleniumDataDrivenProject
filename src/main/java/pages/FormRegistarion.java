@@ -57,7 +57,7 @@ public class FormRegistarion extends BasePage {
     }
 
     public boolean validateEmail(String email) {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+
          boolean displayed = isCreateAccountTextDisplayed();
          wait.until(ExpectedConditions.visibilityOf(createAccountEmail)).sendKeys(email);
          clickCreateAccount();
